@@ -28,6 +28,14 @@ async function sendFunds(from,to,amount){
     const receipt = await web3.eth.sendSignedTransaction('0x' + serializedTx.toString('hex') )
     return receipt
 }
+async function generateKeypair(){
+    const creds = web3.eth.accounts.create()
+    return {
+        address:creds.address,
+        secret:creds.privateKey
+    }
+}
 module.exports = {
-    sendFunds
+    sendFunds,
+    generateKeypair
 }
